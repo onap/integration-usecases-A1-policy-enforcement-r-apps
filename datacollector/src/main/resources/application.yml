@@ -1,0 +1,27 @@
+server:
+  port: 8087
+dmaap:
+  prtocol: "http"
+  host: "localhost"
+  port: 8181
+  measurements-topic: "measurements"
+database:
+  host: mariadb-host
+  port: 3306
+  name: "ves"
+  username: ves
+  driver-class-name: "org.mariadb.jdbc.Driver"
+logging:
+  level:
+    org:
+      springframework: DEBUG
+  logging.file.name: logs/rapp-datacollector.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  main:
+    allow-bean-definition-overriding: true
