@@ -1,0 +1,16 @@
+[
+  {
+    "name": "latency",
+    "condition": "MORE_OR_EQUAL",
+    "averageThresholdValue": 400,
+    "latestThresholdValue": 150,
+    "latestSize": 2
+  },
+  {
+    "name": "throughput",
+    "condition": "LESS_OR_EQUAL",
+    "averageThresholdValue": 10,
+    "latestThresholdValue": 10,
+    "latestSize": 2
+  }
+]

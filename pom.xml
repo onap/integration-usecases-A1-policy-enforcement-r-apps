@@ -22,6 +22,7 @@
     <name>rapp</name>
     <description>rapp applications</description>
     <modules>
+        <module>sleepingcelldetector</module>
         <module>datacollector</module>
     </modules>
 
