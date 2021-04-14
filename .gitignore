@@ -107,3 +107,6 @@ local.properties
 rapp.iml
 datacollector.iml
 sleepingcelldetector.iml
+
+datacollector/doc/swagger/html/*
+datacollector/doc/swagger/*json

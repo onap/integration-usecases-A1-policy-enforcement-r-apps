@@ -1,0 +1,53 @@
+{
+  "cellId": "Cell1",
+  "performance": [
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    },
+    {
+      "latency": 20,
+      "throughput": 80
+    }
+  ]
+}
