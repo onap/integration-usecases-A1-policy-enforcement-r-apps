@@ -36,6 +36,11 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
+        <skipDockerPush>true</skipDockerPush>
+        <docker.registry>nexus3.onap.org:10003</docker.registry>
+        <docker-maven-plugin.version>0.31.0</docker-maven-plugin.version>
+        <docker-image.namespace>onap</docker-image.namespace>
+        <docker-image.name.prefix>integration/usecase/a1-policy-enforcement</docker-image.name.prefix>
 
         <lombok.version>1.18.8</lombok.version>
         <mariadb.version>2.6.0</mariadb.version>
@@ -74,6 +79,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven-plugin.version}</version>
+                <configuration>
+                    <useColor>true</useColor>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
