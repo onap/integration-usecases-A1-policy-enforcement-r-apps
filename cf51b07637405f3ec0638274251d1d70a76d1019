@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef04ad78_0ebf5069",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "contains",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "582f8f87_2250633b",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "there\u0027s no may",
+      "range": {
+        "startLine": 72,
+        "startChar": 50,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a13b6a75_09d0cae9",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "aggregated",
+      "range": {
+        "startLine": 89,
+        "startChar": 28,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a800ca72_9b5ce039",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "uses",
+      "range": {
+        "startLine": 137,
+        "startChar": 27,
+        "endLine": 137,
+        "endChar": 31
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a942877_dffd7815",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "which",
+      "range": {
+        "startLine": 159,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 74
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d15a1f91_eecf85e3",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "Can you rephrase this entire sentence? It\u0027s so unclear to me I can\u0027t even propose an improvement as it is",
+      "range": {
+        "startLine": 158,
+        "startChar": 80,
+        "endLine": 159,
+        "endChar": 103
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb38efaa_4cd9ba7d",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "CSD_SLOT?",
+      "range": {
+        "startLine": 161,
+        "startChar": 83,
+        "endLine": 161,
+        "endChar": 88
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aee0a173_cfe012bc",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "begins to make predictions periodically in intervals defined by SLOT (or CSD_SLOT?) period based on new PM metrics measurement data received in each interval",
+      "range": {
+        "startLine": 161,
+        "startChar": 42,
+        "endLine": 162,
+        "endChar": 31
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c30562_cfd1fa49",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "When sleeping cell is detected, creation of A1 Policy instance is enforced by",
+      "range": {
+        "startLine": 162,
+        "startChar": 33,
+        "endLine": 162,
+        "endChar": 119
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c74115_c996f6c6",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "If cell becomes active again, A1Policy instance deletion request is sent.",
+      "range": {
+        "startLine": 163,
+        "startChar": 28,
+        "endLine": 163,
+        "endChar": 104
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24156427_a577109b",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "log",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 9
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe1feceb_ebc19594",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 3949
+      },
+      "writtenOn": "2021-04-19T10:35:10Z",
+      "side": 1,
+      "message": "successfully, log/rapp-sleepingcelldetector.log should",
+      "range": {
+        "startLine": 188,
+        "startChar": 40,
+        "endLine": 188,
+        "endChar": 59
+      },
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
