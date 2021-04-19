@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e680937_6a825bbf",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5097
+      },
+      "writtenOn": "2021-04-19T07:14:47Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be inherited from oparent? I can\u0027t see this project to be inheriting oparent parent project.",
+      "range": {
+        "startLine": 40,
+        "startChar": 25,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "321e4554c781c2567ebcea2519ce2dec67a9f459",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
