@@ -515,6 +515,329 @@
       "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "624e7a56_7a2e653a",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/configuration/A1Properties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "you can add optional protocol part so if for any reason policy manager is exposed on https no code change is needed",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1246cd3b_9fb5f74b",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/configuration/SleepingCellDetectorConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "nothing major but ... RestTemplate is being deprecated by spring so it may be worth (at some point) to look into WebClient ?",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "659b2069_ba558fc3",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/configuration/SleepingCellDetectorProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "I would prefer longer names like sleepingCellDetector, it improves readability of config",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "039bec55_9e99531c",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/MeasurementConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "I think @Data will give you geters and setters so @Getter may be not needed",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15c50211_9b5d7e84",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/pm/PMData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "this class is not immutable as it leaks reference to List (and Map) which is mutable, it may be okay as it depends on usage",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91b6d391_a0ca45fb",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/pm/PMEntity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "potential issue with immuatbility, using only getter suggest that this class should be immutable but it is not",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83565e9_f798e02b",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/policy/A1PolicyEvent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "Getter is not needed as data is used",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3191662_071ef84a",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/policy/A1PolicyEvent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "in spring boot you can configure it globally from application config, changing it here means recompiling code.",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed510d23_be8fdd0f",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/entity/policy/Resources.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "Getter is included by Data",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "761d7844_22348b30",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/CallbackController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "as lombok is used it may be more readable to use @Logger",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74077224_1e60daf0",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/CellPerformanceVerifierScheduler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "groupping can be done with streams, I think",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bc8f5a7_aa4521ba",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/DataCollectorClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "suboptimal, use string format or string buffer",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a410997_e4b4c1ba",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/PolicyAgentClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "For me it looks more like repository than service but I am not going to insists ;)",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fea13757_b0838721",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/RicConfigurationManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "I may be paranoid but I do not see any timeout which means that this may loop for ever ? Is it intended ?",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "741f584e_cbf282aa",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/ServiceLifeCycleManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "a bit too chatty",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a75505c5_19b03629",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/scd/CalculationUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "it can be shorten to return values.stream().mapToDouble(l -\u003e l).average().orElseThrow(new ArithmeticException(\"Can\u0027t calculate average\"));",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c7d51fb_f1eef674",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/scd/SleepingCellDetectorService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "it can be shortcut to return true after first true is found, here we may iterate over the same list twice",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f47f1d37_4576f7d2",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/scd/condition/Condition.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "it looks to me like @Functional ?",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d6459c9_b36c7810",
+        "filename": "sleepingcelldetector/src/main/java/org/onap/rapp/sleepingcelldetector/service/scd/condition/ConditionEnum.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6641
+      },
+      "writtenOn": "2021-04-20T08:45:22Z",
+      "side": 1,
+      "message": "another enum does not have Enum suffix so it is a bit inconsistent naming",
+      "revId": "cf51b07637405f3ec0638274251d1d70a76d1019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
