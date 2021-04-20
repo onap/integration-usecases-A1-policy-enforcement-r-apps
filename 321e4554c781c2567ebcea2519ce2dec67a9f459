@@ -22,6 +22,30 @@
       "revId": "321e4554c781c2567ebcea2519ce2dec67a9f459",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f625099_4eaa83bf",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5335
+      },
+      "writtenOn": "2021-04-20T09:06:36Z",
+      "side": 1,
+      "message": "oparent - Done\ndocker.registry prop is commented in oprarent: https://gerrit.onap.org/r/gitweb?p\u003doparent.git;a\u003dblob;f\u003dpom.xml;h\u003d1e275bfadb73257c2aa6c99283f112e8009dd28d;hb\u003drefs/heads/master#l53\n\n\"The following properties should be defined in your own ~/.m2/settings.xml based on your own build infastructure setup.\n  51         See the settings.xml in this directory for default settings based on the Linux Foundation ONAP infrastructure.\", so maybe we should delete this prop?",
+      "parentUuid": "8e680937_6a825bbf",
+      "range": {
+        "startLine": 40,
+        "startChar": 25,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "321e4554c781c2567ebcea2519ce2dec67a9f459",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
