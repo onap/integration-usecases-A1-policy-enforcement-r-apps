@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Lasse Kaihlavirta <l.kaihlavirt@partner.samsung.com>
+Code-Review+2: Konrad Banka <k.banka@samsung.com>
+Code-Review+1: Krystian Kedron <k.kedron@partner.samsung.com>
+Submitted-by: Konrad Banka <k.banka@samsung.com>
+Submitted-at: Thu, 22 Apr 2021 13:59:08 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/integration/usecases/A1-policy-enforcement-r-apps/+/120609
+Project: integration/usecases/A1-policy-enforcement-r-apps
+Branch: refs/heads/master
