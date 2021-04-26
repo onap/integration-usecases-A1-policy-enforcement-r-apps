@@ -13,19 +13,15 @@
 
 package org.onap.rapp.sleepingcelldetector.entity.policy;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @JsonTypeName("scope")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Scope  {
     private String ueId;
 }

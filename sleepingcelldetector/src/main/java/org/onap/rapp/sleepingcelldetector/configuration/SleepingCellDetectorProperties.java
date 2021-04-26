@@ -19,7 +19,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "scd")
+@ConfigurationProperties(prefix = "sleepingcelldetector")
 public class SleepingCellDetectorProperties {
     private String prefix;
     private int slot;

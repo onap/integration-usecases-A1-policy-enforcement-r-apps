@@ -18,11 +18,14 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class PMData {
-    String cellId;
-    List<Map<String, Integer>> performance;
+
+    @Singular
+    private List<Map<String, Integer>> performance;
+    private String cellId;
 }

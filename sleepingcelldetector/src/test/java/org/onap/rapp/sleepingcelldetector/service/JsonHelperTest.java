@@ -20,7 +20,7 @@ import org.onap.rapp.sleepingcelldetector.entity.policy.PolicyInstance;
 import org.onap.rapp.sleepingcelldetector.entity.policy.Preference;
 import org.onap.rapp.sleepingcelldetector.entity.policy.Resources;
 import org.onap.rapp.sleepingcelldetector.entity.policy.Scope;
-import org.onap.rapp.sleepingcelldetector.service.scd.condition.ConditionEnum;
+import org.onap.rapp.sleepingcelldetector.service.scd.condition.Condition;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -94,8 +94,8 @@ public class JsonHelperTest {
     }
 
     private MeasurementConfiguration[] prepareTcaConfig() {
-        MeasurementConfiguration latencyConfig = new MeasurementConfiguration("latency", ConditionEnum.MORE_OR_EQUAL, 400, 150, 2);
-        MeasurementConfiguration throughputConfig = new MeasurementConfiguration("throughput", ConditionEnum.LESS_OR_EQUAL, 10, 10, 2);
+        MeasurementConfiguration latencyConfig = new MeasurementConfiguration("latency", Condition.MORE_OR_EQUAL, 400, 150, 2);
+        MeasurementConfiguration throughputConfig = new MeasurementConfiguration("throughput", Condition.LESS_OR_EQUAL, 10, 10, 2);
         return new MeasurementConfiguration[]{latencyConfig, throughputConfig};
     }
 

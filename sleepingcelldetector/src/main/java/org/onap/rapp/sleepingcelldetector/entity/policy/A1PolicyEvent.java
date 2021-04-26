@@ -13,7 +13,6 @@
 
 package org.onap.rapp.sleepingcelldetector.entity.policy;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +23,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class A1PolicyEvent {
     private Scope scope;
     private List<Resources> resources;
