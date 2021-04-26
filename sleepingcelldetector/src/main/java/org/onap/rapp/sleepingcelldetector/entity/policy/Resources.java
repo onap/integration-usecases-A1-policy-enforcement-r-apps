@@ -13,20 +13,16 @@
 
 package org.onap.rapp.sleepingcelldetector.entity.policy;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @JsonTypeName("resources")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Resources {
     private List<String> cellIdList;
     private Preference preference;

@@ -19,13 +19,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "dc")
+@ConfigurationProperties(prefix = "datacollector")
 public class DataCollectorProperties {
+    private String protocol;
     private String host;
     private int port;
     private String version;
 
     public String getDataCollectorUrl() {
-        return String.format("http://%s:%d/%s", host, port, version);
+        return String.format("%s://%s:%d/%s", protocol, host, port, version);
     }
 }

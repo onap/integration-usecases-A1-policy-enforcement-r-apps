@@ -27,7 +27,7 @@ import javax.annotation.PostConstruct;
 import org.onap.rapp.sleepingcelldetector.configuration.SleepingCellDetectorConfiguration;
 import org.onap.rapp.sleepingcelldetector.entity.MeasurementConfiguration;
 import org.onap.rapp.sleepingcelldetector.service.JsonHelper;
-import org.onap.rapp.sleepingcelldetector.service.scd.condition.Condition;
+import org.onap.rapp.sleepingcelldetector.service.scd.condition.ConditionI;
 import org.onap.rapp.sleepingcelldetector.service.scd.condition.ConditionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,7 +118,7 @@ public class SleepingCellDetectorService {
     }
 
     private Boolean isFailing(List<Integer> values, MeasurementConfiguration measurementConfiguration) {
-        Condition condition = ConditionFactory.getCondition(measurementConfiguration.getCondition());
+        ConditionI condition = ConditionFactory.getCondition(measurementConfiguration.getCondition());
         Integer totalAverage = CalculationUtil.calculateAverage(values);
         Integer latestAverage = CalculationUtil.calculateAverage(values.stream()
                 .skip(configuration.getPredictionSlotNumber() - measurementConfiguration.getLatestSize())

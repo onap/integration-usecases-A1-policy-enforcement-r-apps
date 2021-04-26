@@ -66,24 +66,26 @@ Set parameters of environment variables:
 
 A1PolicyManagementService URL can be set using environment variables:
 
+- A1\_PROTOCOL
 - A1\_HOST
 - A1\_PORT
 
 To customize DataCollector R-APP connectivity you need to set the following:
 
-- DC_HOST
-- DC_PORT
-- DC_VERSION
+- DATACOLLECTOR_PROTOCOL
+- DATACOLLECTOR_HOST
+- DATACOLLECTOR_PORT
+- DATACOLLECTOR_VERSION
 
 SleepingCellDetector R-APP configuration fields:
 
-- SCD_PREFIX
-- SCD_SLOT
-- SCD_COUNT
+- SLEEPINGCELLDETECTOR_PREFIX
+- SLEEPINGCELLDETECTOR_SLOT
+- SLEEPINGCELLDETECTOR_COUNT
 
 Prefix of high priority user equipment (policy instances will be created only for user equipments with this prefix),
 example:
-`emergency_` - policy instances will be created only for UEs with "emergency\_" prefix Slot of time in seconds,
+`"emergency_"` - policy instances will be created only for UEs with `"emergency_"` prefix Slot of time in seconds,
 number of slots for DataCollector R-APP Aggregated Metrics endpoint call. Slot: aggregation period (in seconds) for
 which an average performance metrics are calculated Count: number of aggregated performance metrics that should be
 returned by the method, one aggregated performance metric per each slot. The first performance metrics is average

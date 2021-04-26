@@ -48,7 +48,7 @@ public class ServiceLifeCycleManager {
     @Scheduled(fixedRate = 20000)
     private void keepAlive() {
         try {
-            logger.info("Send keep alive request");
+            logger.debug("Send keep alive request");
             policyAPIClient.sendKeepAliveRequest();
         } catch (Exception e) {
             logger.warn("Error during keep alive request {}", e.getMessage());

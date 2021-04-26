@@ -15,17 +15,15 @@ package org.onap.rapp.sleepingcelldetector.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.onap.rapp.sleepingcelldetector.service.scd.condition.ConditionEnum;
+import org.onap.rapp.sleepingcelldetector.service.scd.condition.Condition;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class MeasurementConfiguration {
     private String name;
-    private ConditionEnum condition;
+    private Condition condition;
     private int averageThresholdValue;
     private int latestThresholdValue;
     private int latestSize;

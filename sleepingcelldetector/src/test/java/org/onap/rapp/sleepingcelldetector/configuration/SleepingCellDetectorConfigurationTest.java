@@ -28,13 +28,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @EnableConfigurationProperties({A1Properties.class, DataCollectorProperties.class,
         SleepingCellDetectorProperties.class})
 @ContextConfiguration(classes = {SleepingCellDetectorConfiguration.class})
-@TestPropertySource(properties = {"a1.host=policy-agent", "a1.port=8081",
-        "dc.host=rapp-datacollector",
-        "dc.port=8087",
-        "dc.version=v1",
-        "scd.prefix=emergency",
-        "scd.slot=10",
-        "scd.count=12"
+@TestPropertySource(properties = {"a1.protocol=http", "a1.host=policy-agent", "a1.port=8081",
+        "datacollector.protocol=http",
+        "datacollector.host=rapp-datacollector",
+        "datacollector.port=8087",
+        "datacollector.version=v1",
+        "sleepingcelldetector.prefix=emergency",
+        "sleepingcelldetector.slot=10",
+        "sleepingcelldetector.count=12"
 })
 public class SleepingCellDetectorConfigurationTest {
 
@@ -58,7 +59,7 @@ public class SleepingCellDetectorConfigurationTest {
     }
 
     @Test
-    public void verifyA1PAPropertiesTest() {
+    public void verifySleepingCellDetectorPropertiesTest() {
         Assert.assertEquals(config.getPredictionTimeSlot(), 10);
         Assert.assertEquals(config.getPredictionSlotNumber(), 12);
         Assert.assertEquals(config.getUeFilteringPrefix(), "emergency");

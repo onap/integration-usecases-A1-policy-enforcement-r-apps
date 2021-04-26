@@ -50,7 +50,10 @@ public class DataCollectorClient {
         long count = config.getPredictionSlotNumber();
         String time = URLEncoder.encode(OffsetDateTime.now().minusSeconds(slot * count).toString(),
                 StandardCharsets.UTF_8.toString());
-        return "?slot=" + slot + "&count=" + count + "&startTime=" + time;
+        return new StringBuffer().append("?slot=").append(slot)
+                .append("&count=").append(count)
+                .append("&startTime=").append(time)
+                .toString();
     }
 
     public UEInfo getUserEquipment() {

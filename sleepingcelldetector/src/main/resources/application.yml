@@ -1,13 +1,15 @@
 server:
   port: 8382
 a1:
+  protocol: "http"
   host: "policy-agent"
   port: 8081
-dc:
+datacollector:
+  protocol: "http"
   host: "localhost"
   port: 8087
   version: "v1"
-scd:
+sleepingcelldetector:
   prefix: "emergency"
   slot: 10
   count: 12
@@ -19,3 +21,6 @@ logging:
   pattern:
     console: "%d %-5level %logger : %msg%n"
     file: "%d %-5level [%thread] %logger : %msg%n"
+spring:
+  jackson:
+    default-property-inclusion: non_null

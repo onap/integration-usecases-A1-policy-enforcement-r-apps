@@ -13,19 +13,15 @@
 
 package org.onap.rapp.sleepingcelldetector.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ServiceRegistrationPayload {
     private String callBackUrl;
     private String keepAliveIntervalSeconds;

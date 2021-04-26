@@ -35,7 +35,7 @@ public class CellPerformanceVerifierScheduler {
         this.cellPerformanceHandler = cellPerformanceHandler;
     }
 
-    @Scheduled(fixedRateString = "${scd.slot}000")
+    @Scheduled(fixedRateString = "${sleepingcelldetector.slot}000")
     public void handleMeasurements() {
         logger.debug("Perform measurements check");
         performVesEventsMeasurementVerification();
