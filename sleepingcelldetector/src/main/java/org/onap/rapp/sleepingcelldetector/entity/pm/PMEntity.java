@@ -17,13 +17,16 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 import lombok.ToString;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PMEntity {
-    List<PMData> pm;
-    int totalCell;
+
+    @Singular
+    private List<PMData> pm;
+    private int totalCell;
 }

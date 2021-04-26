@@ -15,14 +15,14 @@ package org.onap.rapp.sleepingcelldetector.service.scd.condition;
 
 public class ConditionFactory {
 
-    private static final Condition less = new Less();
-    private static final Condition more = new More();
-    private static final Condition equal = new Equal();
-    private static final Condition lessOrEqual = new LessOrEqual();
-    private static final Condition moreOrEqual= new MoreOrEqual();
+    private static final ConditionI less = new Less();
+    private static final ConditionI more = new More();
+    private static final ConditionI equal = new Equal();
+    private static final ConditionI lessOrEqual = new LessOrEqual();
+    private static final ConditionI moreOrEqual= new MoreOrEqual();
 
 
-    public static Condition getCondition(ConditionEnum condition) {
+    public static ConditionI getCondition(Condition condition) {
         switch (condition) {
             case LESS:
                 return less;

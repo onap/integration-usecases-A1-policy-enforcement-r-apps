@@ -13,7 +13,7 @@
 
 package org.onap.rapp.sleepingcelldetector.service.scd.condition;
 
-public class Less implements Condition {
+public class Less implements ConditionI {
 
     @Override
     public boolean compare(int value, int toCompare) {

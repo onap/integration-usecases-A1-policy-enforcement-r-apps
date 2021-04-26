@@ -16,11 +16,13 @@ package org.onap.rapp.sleepingcelldetector.entity.ue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class UEInfo {
+    @Singular
     private List<String> ues;
 }
