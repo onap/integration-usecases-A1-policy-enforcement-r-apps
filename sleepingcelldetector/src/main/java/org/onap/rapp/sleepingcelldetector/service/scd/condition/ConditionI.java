@@ -13,13 +13,6 @@
 
 package org.onap.rapp.sleepingcelldetector.service.scd.condition;
 
-public enum ConditionEnum {
-    MORE(),
-    MORE_OR_EQUAL(),
-    LESS(),
-    LESS_OR_EQUAL(),
-    EQUAL();
-
-    private ConditionEnum(){
-    }
+public interface ConditionI {
+    boolean compare(int value, int toCompare);
 }

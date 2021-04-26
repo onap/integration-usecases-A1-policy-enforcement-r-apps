@@ -21,11 +21,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties(prefix = "a1")
 public class A1Properties {
+    String protocol;
     private String host;
     private int port;
 
     public String getA1PolicyUrl() {
-        return String.format("http://%s:%d", host, port);
+        return String.format("%s://%s:%d", protocol, host, port);
     }
 
 }

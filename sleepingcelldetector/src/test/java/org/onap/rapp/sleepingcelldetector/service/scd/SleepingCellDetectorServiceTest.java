@@ -17,7 +17,7 @@ import org.onap.rapp.sleepingcelldetector.configuration.SleepingCellDetectorConf
 import org.onap.rapp.sleepingcelldetector.entity.MeasurementConfiguration;
 import org.onap.rapp.sleepingcelldetector.service.CellPerformanceHandlerTest;
 import org.onap.rapp.sleepingcelldetector.service.JsonHelper;
-import org.onap.rapp.sleepingcelldetector.service.scd.condition.ConditionEnum;
+import org.onap.rapp.sleepingcelldetector.service.scd.condition.Condition;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -132,8 +132,8 @@ public class SleepingCellDetectorServiceTest {
     }
 
     private Map<String, MeasurementConfiguration> prepareMeasurementConfig() {
-        MeasurementConfiguration latencyConfig = new MeasurementConfiguration("latency", ConditionEnum.MORE_OR_EQUAL, 400, 150, 2);
-        MeasurementConfiguration throughputConfig = new MeasurementConfiguration("throughput", ConditionEnum.LESS_OR_EQUAL, 10, 10, 2);
+        MeasurementConfiguration latencyConfig = new MeasurementConfiguration("latency", Condition.MORE_OR_EQUAL, 400, 150, 2);
+        MeasurementConfiguration throughputConfig = new MeasurementConfiguration("throughput", Condition.LESS_OR_EQUAL, 10, 10, 2);
 
         Map<String, MeasurementConfiguration> configMap = new HashMap<>();
         configMap.put("latency", latencyConfig);
