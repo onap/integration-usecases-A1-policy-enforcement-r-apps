@@ -46,6 +46,30 @@
       "revId": "0e1db28856113b639753f64e45e99d5f1306c56d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d48df325_f8f03c25",
+        "filename": "sleepingcelldetector/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5550
+      },
+      "writtenOn": "2021-04-29T09:36:47Z",
+      "side": 1,
+      "message": "And in such a case we should treat similarly vars below..",
+      "parentUuid": "536df843_51d5b8f2",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 0
+      },
+      "revId": "0e1db28856113b639753f64e45e99d5f1306c56d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
