@@ -4,6 +4,8 @@ dmaap:
   prtocol: "http"
   host: "localhost"
   port: 8181
+  username: dcae@dcae.onap.org
+  password: demo123456!
   measurements-topic: "measurements"
 database:
   host: mariadb-host

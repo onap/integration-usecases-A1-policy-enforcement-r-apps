@@ -45,6 +45,12 @@ public class VesPersisterSqlImpl implements VesPersister {
     }
 
     @Override
+    public void persistAll(List<Event> events) {
+        logger.debug("persisting all events {}", events);
+        repository.saveAll(events);
+    }
+
+    @Override
     public List<EventAPI> findTopNVesEvent(int n) {
         logger.debug("finding top {} events", n);
         return repositoryAPI.findTopNVesEvent(n);

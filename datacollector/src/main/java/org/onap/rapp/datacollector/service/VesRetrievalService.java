@@ -16,9 +16,11 @@ package org.onap.rapp.datacollector.service;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import org.onap.rapp.datacollector.entity.ves.AdditionalMeasurementValues;
 import org.onap.rapp.datacollector.entity.ves.AdditionalMeasurements;
 import org.onap.rapp.datacollector.entity.ves.Event;
@@ -26,6 +28,9 @@ import org.onap.rapp.datacollector.service.configuration.DmaapRestReaderConfigur
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -40,13 +45,13 @@ public class VesRetrievalService implements DmaapRestReader {
 
     private final RestTemplate restTemplate;
     private final DmaapRestReaderConfiguration config;
-    private final VesParser parser;
+    private final ParserFactory parser;
     private final VesPersister persister;
     private final UEHolder ueHolder;
 
     @Autowired
-    public VesRetrievalService(RestTemplate restTemplate, VesParser parser, VesPersister persister,
-                               DmaapRestReaderConfiguration configuration, UEHolder ueHolder) {
+    public VesRetrievalService(RestTemplate restTemplate, ParserFactory parser, VesPersister persister,
+            DmaapRestReaderConfiguration configuration, UEHolder ueHolder) {
         this.restTemplate = restTemplate;
         this.parser = parser;
         this.persister = persister;
@@ -59,7 +64,9 @@ public class VesRetrievalService implements DmaapRestReader {
         logger.info("Reaching from dmaap: {}", config.getMeasurementsTopicUrl());
         try {
             ResponseEntity<String[]> responseEntity =
-                    restTemplate.getForEntity(config.getMeasurementsTopicUrl(), String[].class);
+                    restTemplate.exchange(config.getMeasurementsTopicUrl(), HttpMethod.GET,
+                            new HttpEntity<String>(createHeaders(config.getDmaapProperties().getUsername(), config.getDmaapProperties().getPassword())),
+                            String[].class);
             if (responseEntity.hasBody()) {
                 String[] events = responseEntity.getBody();
                 return Arrays.stream(events).collect(Collectors.toList());
@@ -70,18 +77,25 @@ public class VesRetrievalService implements DmaapRestReader {
         return Collections.emptyList();
     }
 
+    private HttpHeaders createHeaders(String username, String password) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBasicAuth(username, password);
+        return headers;
+    }
+
     @Scheduled(fixedRate = 5000)
     public void retrieveAndStoreVesEvents() {
-        retrieveEvents().stream().map(parser::parse).forEach(this::saveEvent);
+        retrieveEvents().stream().map(parser::getParsedEvents).forEach(this::saveAllEvents);
     }
 
-    private void saveEvent(Event event) {
-        persister.persists(event);
-        saveUesOfVes(event);
+    private void saveAllEvents(List<Event> events) {
+        persister.persistAll(events);
+        saveUesOfVes(events);
     }
 
-    private void saveUesOfVes(Event event){
-        Set<String> uesOfVes = getUserEquipmentData(event);
+    private void saveUesOfVes(List<Event> events) {
+        Set<String> uesOfVes = Optional.ofNullable(events).orElse(Collections.emptyList()).stream().flatMap(event -> getUserEquipmentData(event).stream())
+                .collect(Collectors.toSet());
         uesOfVes.forEach(ueHolder::addUE);
     }
 

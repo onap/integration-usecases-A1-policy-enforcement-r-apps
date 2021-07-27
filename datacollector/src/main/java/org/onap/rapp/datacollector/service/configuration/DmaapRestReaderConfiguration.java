@@ -47,7 +47,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class DmaapRestReaderConfiguration {
 
-    private final static class TrustAllSSLSocketFactory extends SSLSocketFactory {
+    private static final class TrustAllSSLSocketFactory extends SSLSocketFactory {
+
         SSLContext sslContext = SSLContext.getInstance("TLS");
 
         public TrustAllSSLSocketFactory() throws NoSuchAlgorithmException, KeyManagementException {
@@ -118,6 +119,10 @@ public class DmaapRestReaderConfiguration {
 
     public String getMeasurementsTopicUrl() {
         return dmaapProperties.getMeasurementsTopicUrl();
+    }
+
+    public DmaapProperties getDmaapProperties() {
+        return dmaapProperties;
     }
 
 

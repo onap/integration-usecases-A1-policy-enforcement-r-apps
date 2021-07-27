@@ -15,6 +15,10 @@
 package org.onap.rapp.datacollector.entity.ves;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
 
 public class EventTest {
@@ -27,12 +31,20 @@ public class EventTest {
         return Event.of(header, fields);
     }
 
+    public static List<Event> createDumyListOfEvents() {
+        return Collections.singletonList(createDumyEvent());
+    }
+
     public static Event createDumyEventWithUe() {
         CommonEventHeader header =
                 CommonEventHeaderTest.createDumyCommonEventHeader();
         MeasurementFields fields =
                 MeasurementFieldsTest.createDummy(MeasurementFieldsTest.createDummyAdditionalMeasurementsWithTrafficModel());
         return Event.of(header, fields);
+    }
+
+    public static List<Event> createDumyListOfEventsWithUe() {
+        return Collections.singletonList(createDumyEventWithUe());
     }
 
     @Test

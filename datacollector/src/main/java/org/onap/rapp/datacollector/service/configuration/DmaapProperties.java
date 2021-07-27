@@ -13,16 +13,20 @@
 
 package org.onap.rapp.datacollector.service.configuration;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "dmaap")
 public class DmaapProperties {
+
     private String protocol;
     private String host;
+    private String username;
+    private String password;
     private int port;
     private String measurementsTopic;
 
