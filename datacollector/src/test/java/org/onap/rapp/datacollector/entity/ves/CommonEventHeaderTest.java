@@ -67,21 +67,21 @@ public class CommonEventHeaderTest {
     public void builder() {
         CommonEventHeader actual = createDumyCommonEventHeader();
 
-        assertEquals("version", actual.version);
-        assertEquals("domain", actual.domain);
-        assertEquals("eventId", actual.eventId);
-        assertEquals("eventName", actual.eventName);
-        assertEquals("eventType", actual.eventType);
-        assertEquals(12345L, actual.lastEpochMicrosec.longValue());
-        assertEquals("nfcNamingCode", actual.nfcNamingCode);
-        assertEquals("nfNamingCode", actual.nfNamingCode);
-        assertEquals("priority", actual.priority);
-        assertEquals("entityId", actual.reportingEntityId);
-        assertEquals("reportingEntityName", actual.reportingEntityName);
-        assertEquals(567, actual.sequence.intValue());
-        assertEquals("sourceId", actual.sourceId);
-        assertEquals("sourceName", actual.sourceName);
-        assertEquals(123456789L, actual.startEpochMicrosec.longValue());
+        assertEquals("version", actual.getVersion());
+        assertEquals("domain", actual.getDomain());
+        assertEquals("eventId", actual.getEventId());
+        assertEquals("eventName", actual.getEventName());
+        assertEquals("eventType", actual.getEventType());
+        assertEquals(12345L, actual.getLastEpochMicrosec().longValue());
+        assertEquals("nfcNamingCode", actual.getNfcNamingCode());
+        assertEquals("nfNamingCode", actual.getNfNamingCode());
+        assertEquals("priority", actual.getPriority());
+        assertEquals("entityId", actual.getReportingEntityId());
+        assertEquals("reportingEntityName", actual.getReportingEntityName());
+        assertEquals(567, actual.getSequence().intValue());
+        assertEquals("sourceId", actual.getSourceId());
+        assertEquals("sourceName", actual.getSourceName());
+        assertEquals(123456789L, actual.getStartEpochMicrosec().longValue());
         assertEquals("UTC+2", actual.timeZoneOffset);
 
 

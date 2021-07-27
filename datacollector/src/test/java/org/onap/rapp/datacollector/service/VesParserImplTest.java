@@ -20,12 +20,15 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.google.gson.JsonParseException;
 import org.onap.rapp.datacollector.entity.ves.Event;
 
+import com.google.gson.JsonParseException;
+
 public class VesParserImplTest {
+
     String testVesContent;
     VesParser parser = new VesParserImpl();
 
@@ -40,17 +43,17 @@ public class VesParserImplTest {
 
     @Test
     public void parse() {
-        Event actual = parser.parse(testVesContent);
-        assertEquals("4.0.1", actual.commonEventHeader.version);
-        assertEquals(1413378172000000L, (long) actual.commonEventHeader.lastEpochMicrosec);
-        assertEquals(1413378172000000L, (long) actual.commonEventHeader.startEpochMicrosec);
-        assertEquals(3, (int) actual.commonEventHeader.sequence);
-        assertEquals("measurement", actual.commonEventHeader.domain);
+        Event actual = parser.parse(testVesContent).get(0);
+        assertEquals("4.0.1", actual.commonEventHeader.getVersion());
+        assertEquals(1413378172000000L, (long) actual.commonEventHeader.getLastEpochMicrosec());
+        assertEquals(1413378172000000L, (long) actual.commonEventHeader.getStartEpochMicrosec());
+        assertEquals(3, (int) actual.commonEventHeader.getSequence());
+        assertEquals("measurement", actual.commonEventHeader.getDomain());
         assertEquals("UTC-05:30", actual.commonEventHeader.timeZoneOffset);
     }
 
     @Test(expected = JsonParseException.class)
     public void parseEmpty() {
-        Event actual = parser.parse("{\"event\":{}}");
+        Event actual = parser.parse("{\"event\":{}}").get(0);
     }
 }
