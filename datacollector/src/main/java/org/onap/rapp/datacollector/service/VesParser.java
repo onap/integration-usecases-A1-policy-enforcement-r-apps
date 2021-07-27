@@ -14,8 +14,11 @@
 
 package org.onap.rapp.datacollector.service;
 
+import java.util.List;
+
 import org.onap.rapp.datacollector.entity.ves.Event;
 
 public interface VesParser {
-    Event parse(final String event);
+
+    List<Event> parse(final String event);
 }

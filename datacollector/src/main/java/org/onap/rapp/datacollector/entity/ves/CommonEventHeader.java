@@ -14,53 +14,42 @@
 
 package org.onap.rapp.datacollector.entity.ves;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.springframework.data.annotation.Transient;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
 @EqualsAndHashCode
 @ToString
 @Builder
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommonEventHeader {
-    public final String eventType;
-    public final String version;
-    public final String sourceId;
-    public final String reportingEntityName;
-    public final Long startEpochMicrosec;
-    public final String eventId;
-    public final Long lastEpochMicrosec;
-    public final String priority;
-    public final Integer sequence;
-    public final String sourceName;
-    public final String domain;
-    public final String eventName;
-    public final String reportingEntityId;
-    public final String nfcNamingCode;
-    public final String nfNamingCode;
+
+    private final String eventType;
+    private final String version;
+    private final String sourceId;
+    private final String reportingEntityName;
+    private Long startEpochMicrosec;
+    private final String eventId;
+    private Long lastEpochMicrosec;
+    private final String priority;
+    private final Integer sequence;
+    private final String sourceName;
+    private final String domain;
+    private final String eventName;
+    private final String reportingEntityId;
+    private final String nfcNamingCode;
+    private final String nfNamingCode;
     @Transient
     public final String timeZoneOffset;
 
-    protected CommonEventHeader(String eventType, String version, String sourceId, String reportingEntityName, Long startEpochMicrosec, String eventId, Long lastEpochMicrosec, String priority, Integer sequence, String sourceName, String domain, String eventName, String reportingEntityId, String nfcNamingCode, String nfNamingCode, String timeZone) {
-        this.eventType = eventType;
-        this.version = version;
-        this.sourceId = sourceId;
-        this.reportingEntityName = reportingEntityName;
-        this.startEpochMicrosec = startEpochMicrosec;
-        this.eventId = eventId;
-        this.lastEpochMicrosec = lastEpochMicrosec;
-        this.priority = priority;
-        this.sequence = sequence;
-        this.sourceName = sourceName;
-        this.domain = domain;
-        this.eventName = eventName;
-        this.reportingEntityId = reportingEntityId;
-        this.nfcNamingCode = nfcNamingCode;
-        this.nfNamingCode = nfNamingCode;
-        this.timeZoneOffset = timeZone;
-    }
 }

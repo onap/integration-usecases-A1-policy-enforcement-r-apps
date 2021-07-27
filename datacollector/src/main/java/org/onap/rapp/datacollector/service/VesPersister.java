@@ -19,7 +19,10 @@ import org.onap.rapp.datacollector.entity.ves.Event;
 import org.onap.rapp.datacollector.entity.ves.EventAPI;
 
 public interface VesPersister {
+
     void persists(Event event);
+
+    void persistAll(List<Event> events);
 
     List<EventAPI> findTopNVesEvent(int n);
 
