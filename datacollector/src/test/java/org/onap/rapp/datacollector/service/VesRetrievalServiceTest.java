@@ -15,7 +15,9 @@ package org.onap.rapp.datacollector.service;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,13 +25,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.onap.rapp.datacollector.entity.ves.Event;
+import org.onap.rapp.datacollector.entity.ves.EventTest;
 import org.onap.rapp.datacollector.service.configuration.DmaapRestReaderConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.onap.rapp.datacollector.entity.ves.EventTest;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VesRetrievalServiceTest {
@@ -41,7 +42,7 @@ public class VesRetrievalServiceTest {
     private DmaapRestReaderConfiguration config;
 
     @Mock
-    private VesParser parser;
+    private ParserFactory parser;
 
     @Mock
     private VesPersister persister;
@@ -83,30 +84,30 @@ public class VesRetrievalServiceTest {
     public void whenRetrievedThenAlsoStored() {
         Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
         Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
-                .thenReturn(new ResponseEntity<String[]>(new String[]{"dead", "beef"}, HttpStatus.OK));
-        Mockito.when(parser.parse(Mockito.any(String.class)))
-                .thenReturn(EventTest.createDumyEvent());
+                .thenReturn(new ResponseEntity<>(new String[]{"dead", "beef"}, HttpStatus.OK));
+        Mockito.when(parser.getParsedEvents(Mockito.any(String.class)))
+                .thenReturn(EventTest.createDumyListOfEvents());
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
         service.retrieveAndStoreVesEvents();
 
-        Mockito.verify(persister, Mockito.times(2)).persists(Mockito.any(Event.class));
+        Mockito.verify(persister, Mockito.times(2)).persistAll(Mockito.any(List.class));
     }
 
     @Test
     public void whenRetrievedThenAlsoStoredWithUE() {
         Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
         Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
-                .thenReturn(new ResponseEntity<String[]>(new String[]{"dead", "beef"}, HttpStatus.OK));
-        Mockito.when(parser.parse(Mockito.any(String.class)))
-                .thenReturn(EventTest.createDumyEventWithUe());
+                .thenReturn(new ResponseEntity<>(new String[]{"dead", "beef"}, HttpStatus.OK));
+        Mockito.when(parser.getParsedEvents(Mockito.any(String.class)))
+                .thenReturn(EventTest.createDumyListOfEventsWithUe());
 
         UEHolder ueHolder = new UEHolder();
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
         service.retrieveAndStoreVesEvents();
 
-        Mockito.verify(persister, Mockito.times(2)).persists(Mockito.any(Event.class));
+        Mockito.verify(persister, Mockito.times(2)).persistAll(Mockito.any(List.class));
         Assert.assertEquals(ueHolder.getUes(), Set.of("emergency_samsung_01", "mobile_samsung_s10"));
     }
 }

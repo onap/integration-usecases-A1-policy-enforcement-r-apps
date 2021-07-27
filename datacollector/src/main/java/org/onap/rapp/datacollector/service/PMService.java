@@ -33,14 +33,15 @@ public class PMService {
     private static final Logger logger = LoggerFactory.getLogger(PMService.class);
 
     public static final String CELL_FIELD_NAME = "identifier";
+    public static final String VALUE_NAME = "value";
     public static final int CELL_INDEX = 0;
     private static final int MICRO_SECONDS_OF_SECOND = 1_000_000;
 
     private final VesPersisterSqlImpl vesPersisterSql;
     private final DataAggregationService aggregationService;
-    private final VesParser parser;
+    private final ParserFactory parser;
 
-    public PMService(VesPersisterSqlImpl vesPersisterSql, DataAggregationService aggregationService, VesParser parser) {
+    public PMService(VesPersisterSqlImpl vesPersisterSql, DataAggregationService aggregationService, ParserFactory parser) {
         this.vesPersisterSql = vesPersisterSql;
         this.aggregationService = aggregationService;
         this.parser = parser;
@@ -71,7 +72,7 @@ public class PMService {
     }
 
     private Map<String, List<Event>> groupByCell(List<EventAPI> events) {
-        return events.stream().map(e -> parser.parse(e.getRawdata()))
+        return events.stream().flatMap(e -> parser.getParsedEvents(e.getRawdata()).stream())
                 .collect(Collectors.groupingBy(this::getCellFromVes));
     }
 
