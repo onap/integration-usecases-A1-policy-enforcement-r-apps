@@ -14,20 +14,15 @@
 
 package org.onap.rapp.datacollector.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import static java.util.Objects.nonNull;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import org.onap.rapp.datacollector.entity.ves.AdditionalMeasurements;
 import org.onap.rapp.datacollector.entity.ves.CommonEventHeader;
 import org.onap.rapp.datacollector.entity.ves.Event;
@@ -36,64 +31,87 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
 @Service
-public class VesParserImpl implements VesParser {
+public class VesParserImpl extends ParserAbstractClass implements VesParser {
+
     private static final Logger logger = LoggerFactory.getLogger(VesParserImpl.class);
 
+    /**
+     * Parse incoming Json string into list of Events
+     *
+     * @param eventString json from PM Mapper
+     * @return list of events
+     */
+    @Override
+    public List<Event> parse(final String eventString) {
+        logger.debug("parsing ves event {}", eventString);
+        Event event = gson.fromJson(eventString, Event.class);
+        event.raw = eventString;
+
+        return Collections.singletonList(event);
+    }
+
+    /**
+     * Class which deserialize json event into Event object
+     */
     private static class VesEventDeserializer implements JsonDeserializer<Event> {
+
         private static class AdditionalMeasurementsRawValue {
+
             String name;
             Map<String, String> hashMap;
         }
 
         @Override
         public Event deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-            JsonObject obj = jsonElement.getAsJsonObject();
-            obj = obj.getAsJsonObject("event");
-            CommonEventHeader header;
-            Optional<MeasurementFields> measurementFields = Optional.empty();
-            List<AdditionalMeasurements> additionalMeasurements = Collections.emptyList();
-            if (obj.has("commonEventHeader")) {
-                JsonObject h = obj.getAsJsonObject("commonEventHeader");
-                header = jsonDeserializationContext.deserialize(h, CommonEventHeader.class);
-            } else {
-                throw new JsonParseException("Common header not found");
-            }
-            if (obj.has("measurementFields")) {
-                JsonObject h = obj.getAsJsonObject("measurementFields");
-                measurementFields = Optional.ofNullable(jsonDeserializationContext.deserialize(h, MeasurementFields.class));
-                if (h.has("additionalMeasurements")) {
-                    JsonArray arr = h.getAsJsonArray("additionalMeasurements");
+            Optional<JsonObject> eventJsonObject = getEventJsonObject(jsonElement);
+            CommonEventHeader header = getHeaderJsonObject(eventJsonObject.orElse(null), jsonDeserializationContext);
+
+            Optional<MeasurementFields> measurementFields;
+            List<AdditionalMeasurements> additionalMeasurements = new ArrayList<>();
+
+            Optional<JsonObject> vesEventJson = getVesEventJson(eventJsonObject.orElse(null));
+            if (vesEventJson.isPresent()) {
+                measurementFields = Optional.ofNullable(jsonDeserializationContext.deserialize(vesEventJson.get(), MeasurementFields.class));
+                if (vesEventJson.get().has("additionalMeasurements")) {
+                    JsonArray additionalMeasurementsArray = vesEventJson.get().getAsJsonArray("additionalMeasurements");
                     additionalMeasurements = new ArrayList<>();
-                    for (int i = 0; i < arr.size(); i++) {
-                        AdditionalMeasurementsRawValue tmp = jsonDeserializationContext.deserialize(arr.get(i).getAsJsonObject(), AdditionalMeasurementsRawValue.class);
+                    for (int i = 0; i < additionalMeasurementsArray.size(); i++) {
+                        AdditionalMeasurementsRawValue tmp = jsonDeserializationContext
+                                .deserialize(additionalMeasurementsArray.get(i).getAsJsonObject(), AdditionalMeasurementsRawValue.class);
                         additionalMeasurements.add(AdditionalMeasurements.builder()
                                 .withName(tmp.name)
                                 .withHashMap(tmp.hashMap)
                                 .build());
                     }
                 }
+                logger.trace("measurement fields {}", measurementFields);
+                logger.trace("additional measurements {}", additionalMeasurements);
+                measurementFields = Optional.of(MeasurementFields.builder()
+                        .measurementInterval(measurementFields.orElse(MeasurementFields.EMPTY).measurementInterval)
+                        .additionalMeasurements(additionalMeasurements)
+                        .build());
+                return Event.of(header, measurementFields.get());
+            } else {
+                logger.error("MeasurementFields was not found {}", eventJsonObject);
+                throw new JsonParseException("MeasurementFields was not found");
             }
-            logger.trace("measurement fields {}", measurementFields);
-            logger.trace("additional measurements {}", additionalMeasurements);
-            measurementFields = Optional.of(MeasurementFields.builder()
-                    .measurementInterval(measurementFields.orElse(MeasurementFields.EMPTY).measurementInterval)
-                    .additionalMeasurements(additionalMeasurements)
-                    .build());
+        }
 
-            return Event.of(header, measurementFields.get());
+        private Optional<JsonObject> getVesEventJson(JsonObject obj) {
+            return Optional.ofNullable(nonNull(obj) ? obj.getAsJsonObject(VES_EVENT_UNIQUE_ELEMENT) : null);
         }
     }
 
     private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Event.class, new VesEventDeserializer())
-            .create();
-
-    public Event parse(final String event) {
-        logger.debug("parsing ves event {}", event);
-        final Event result = gson.fromJson(event, Event.class);
-        result.raw = event;
-        return result;
-    }
-
+            .registerTypeAdapter(Event.class, new VesEventDeserializer()).create();
 }

@@ -48,7 +48,7 @@ public class MeasurementFieldsTest {
         MeasurementFields actual = createDummy(v);
 
         assertEquals(1234567L, actual.measurementInterval);
-        assertEquals("4.0", actual.measurementFieldsVersion);
+        assertEquals("4.0", actual.MEASUREMENT_FIELDS_VERSION);
         assertEquals(List.of(v), actual.additionalMeasurements);
     }
 }

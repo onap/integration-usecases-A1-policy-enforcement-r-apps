@@ -15,12 +15,14 @@ package org.onap.rapp.datacollector.entity.ves;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @ToString
@@ -31,7 +33,7 @@ public class MeasurementFields {
     public static final MeasurementFields EMPTY = new MeasurementFields(-1L, -1L, Collections.emptyList());
     public final Long eventId;
     public final long measurementInterval;
-    public final String measurementFieldsVersion = "4.0";
+    public static final String MEASUREMENT_FIELDS_VERSION = "4.0";
 
     @Column("event_id")
     public final List<AdditionalMeasurements> additionalMeasurements;
