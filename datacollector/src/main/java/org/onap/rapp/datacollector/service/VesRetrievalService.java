@@ -16,9 +16,11 @@ package org.onap.rapp.datacollector.service;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import org.onap.rapp.datacollector.entity.ves.AdditionalMeasurementValues;
 import org.onap.rapp.datacollector.entity.ves.AdditionalMeasurements;
 import org.onap.rapp.datacollector.entity.ves.Event;
@@ -40,13 +42,13 @@ public class VesRetrievalService implements DmaapRestReader {
 
     private final RestTemplate restTemplate;
     private final DmaapRestReaderConfiguration config;
-    private final VesParser parser;
+    private final ParserFactory parser;
     private final VesPersister persister;
     private final UEHolder ueHolder;
 
     @Autowired
-    public VesRetrievalService(RestTemplate restTemplate, VesParser parser, VesPersister persister,
-                               DmaapRestReaderConfiguration configuration, UEHolder ueHolder) {
+    public VesRetrievalService(RestTemplate restTemplate, ParserFactory parser, VesPersister persister,
+            DmaapRestReaderConfiguration configuration, UEHolder ueHolder) {
         this.restTemplate = restTemplate;
         this.parser = parser;
         this.persister = persister;
@@ -72,16 +74,17 @@ public class VesRetrievalService implements DmaapRestReader {
 
     @Scheduled(fixedRate = 5000)
     public void retrieveAndStoreVesEvents() {
-        retrieveEvents().stream().map(parser::parse).forEach(this::saveEvent);
+        retrieveEvents().stream().map(parser::getParsedEvents).forEach(this::saveAllEvents);
     }
 
-    private void saveEvent(Event event) {
-        persister.persists(event);
-        saveUesOfVes(event);
+    private void saveAllEvents(List<Event> events) {
+        persister.persistAll(events);
+        saveUesOfVes(events);
     }
 
-    private void saveUesOfVes(Event event){
-        Set<String> uesOfVes = getUserEquipmentData(event);
+    private void saveUesOfVes(List<Event> events) {
+        Set<String> uesOfVes = Optional.ofNullable(events).orElse(Collections.emptyList()).stream().flatMap(event -> getUserEquipmentData(event).stream())
+                .collect(Collectors.toSet());
         uesOfVes.forEach(ueHolder::addUE);
     }
 
