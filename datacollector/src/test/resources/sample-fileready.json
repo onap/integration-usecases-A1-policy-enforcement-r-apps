@@ -1,0 +1,137 @@
+{
+  "event": {
+    "commonEventHeader": {
+      "domain": "perf3gpp",
+      "eventId": "ddd48497-913c-451f-a396-2316a29e5975",
+      "sequence": 0,
+      "eventName": "perf3gpp_PE-Samsung_pmMeasResult",
+      "sourceName": "someVnfName",
+      "reportingEntityName": "",
+      "priority": "Normal",
+      "startEpochMicrosec": 1626352192000,
+      "lastEpochMicrosec": 1626352222000,
+      "version": "4.0",
+      "vesEventListenerVersion": "7.1",
+      "timeZoneOffset": "+02:00"
+    },
+    "perf3gppFields": {
+      "perf3gppFieldsVersion": "1.0",
+      "measDataCollection": {
+        "granularityPeriod": 16262192000,
+        "measuredEntityUserName": "ORAN PE Sim",
+        "measuredEntityDn": "",
+        "measuredEntitySoftwareVersion": "",
+        "measInfoList": [
+          {
+            "measInfoId": {
+              "sMeasInfoId": ""
+            },
+            "measTypes": {
+              "sMeasTypesList": [
+                "latency",
+                "throughput"
+              ]
+            },
+            "measValuesList": [
+              {
+                "measObjInstId": "Chn0000",
+                "suspectFlag": "false",
+                "measResults": [
+                  {
+                    "p": 1,
+                    "sValue": "110"
+                  },
+                  {
+                    "p": 2,
+                    "sValue": "55"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId": {
+              "sMeasInfoId": ""
+            },
+            "measTypes": {
+              "sMeasTypesList": [
+                "latency",
+                "throughput"
+              ]
+            },
+            "measValuesList": [
+              {
+                "measObjInstId": "Chn0000",
+                "suspectFlag": "false",
+                "measResults": [
+                  {
+                    "p": 1,
+                    "sValue": "101"
+                  },
+                  {
+                    "p": 2,
+                    "sValue": "¨78"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId": {
+              "sMeasInfoId": ""
+            },
+            "measTypes": {
+              "sMeasTypesList": [
+                "latency",
+                "throughput"
+              ]
+            },
+            "measValuesList": [
+              {
+                "measObjInstId": "Chn0000",
+                "suspectFlag": "false",
+                "measResults": [
+                  {
+                    "p": 1,
+                    "sValue": "135"
+                  },
+                  {
+                    "p": 2,
+                    "sValue": "22"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId": {
+              "sMeasInfoId": ""
+            },
+            "measTypes": {
+              "sMeasTypesList": [
+                "latency",
+                "throughput"
+              ]
+            },
+            "measValuesList": [
+              {
+                "measObjInstId": "Chn0000",
+                "suspectFlag": "false",
+                "measResults": [
+                  {
+                    "p": 1,
+                    "sValue": "100"
+                  },
+                  {
+                    "p": 2,
+                    "sValue": "35"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
