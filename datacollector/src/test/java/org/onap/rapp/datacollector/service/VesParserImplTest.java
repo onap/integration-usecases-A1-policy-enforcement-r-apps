@@ -15,11 +15,8 @@
 package org.onap.rapp.datacollector.service;
 
 import static org.junit.Assert.assertEquals;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
+import static org.onap.rapp.datacollector.TestHelpers.getEmptyEvent;
+import static org.onap.rapp.datacollector.TestHelpers.getTestEventFromFile;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,16 +30,12 @@ public class VesParserImplTest {
     VesParser parser = new VesParserImpl();
 
     @Before
-    public void setUp() throws Exception {
-        InputStream in = this.getClass().getResourceAsStream("/sample-ves.json");
-        try (in) {
-            BufferedReader inr = new BufferedReader(new InputStreamReader(in));
-            testVesContent = inr.lines().collect(Collectors.joining(" "));
-        }
+    public void setUp() {
+        testVesContent = getTestEventFromFile("/sample-ves.json");
     }
 
     @Test
-    public void parse() {
+    public void testParsing() {
         Event actual = parser.parse(testVesContent).get(0);
         assertEquals("4.0.1", actual.commonEventHeader.getVersion());
         assertEquals(1413378172000000L, (long) actual.commonEventHeader.getLastEpochMicrosec());
@@ -54,6 +47,6 @@ public class VesParserImplTest {
 
     @Test(expected = JsonParseException.class)
     public void parseEmpty() {
-        Event actual = parser.parse("{\"event\":{}}").get(0);
+        parser.parse(getEmptyEvent());
     }
 }
