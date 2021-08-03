@@ -13,27 +13,31 @@
 
 package org.onap.rapp.datacollector.service;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 import org.onap.rapp.datacollector.entity.ves.EventTest;
+import org.onap.rapp.datacollector.service.configuration.DmaapProperties;
 import org.onap.rapp.datacollector.service.configuration.DmaapRestReaderConfiguration;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-@RunWith(MockitoJUnitRunner.class)
-public class VesRetrievalServiceTest {
+class VesRetrievalServiceTest {
 
     @Mock
     private RestTemplate restTemplate;
@@ -50,55 +54,52 @@ public class VesRetrievalServiceTest {
     @Mock
     UEHolder ueHolder;
 
+    private static final String TOPIC_URL = "http://localhost/a-topic";
+
     private VesRetrievalService service;
 
-    @Before
+    @BeforeEach
     public void init() {
-        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
+        MockitoAnnotations.initMocks(this);
+        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn(TOPIC_URL);
+        Mockito.when(config.getDmaapProperties()).thenReturn(getTestProperties());
         String[] response = new String[]{"a", "b"};
-        Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
+
+        Mockito.when(restTemplate.exchange(TOPIC_URL, HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
                 .thenReturn(new ResponseEntity<>(response, HttpStatus.OK));
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
     }
 
     @Test
-    public void givenMockingIsDoneByMockRestServiceServer_whenGetIsCalled_thenReturnsMockedObject() {
+    void givenMockingIsDoneByMockRestServiceServer_whenGetIsCalled_thenReturnsMockedObject() {
         HashSet<String> actual = new HashSet<>(service.retrieveEvents());
         Set<String> expected = Set.of("a", "b");
-        Assert.assertEquals(actual, expected);
+        assertEquals(actual, expected);
     }
 
     @Test
-    public void whenGetIsCalled_thenExceptionIsThrown() {
-        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
-        Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
+    void whenGetIsCalled_thenExceptionIsThrown() {
+        Mockito.when(restTemplate.exchange(TOPIC_URL, HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
                 .thenThrow(new RestClientException("An test exception"));
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
         Collection<String> actual = service.retrieveEvents();
-        Assert.assertEquals(0, actual.size());
+        assertEquals(0, actual.size());
     }
 
     @Test
-    public void whenRetrievedThenAlsoStored() {
-        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
-        Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
-                .thenReturn(new ResponseEntity<>(new String[]{"dead", "beef"}, HttpStatus.OK));
+    void whenRetrievedThenAlsoStored() {
         Mockito.when(parser.getParsedEvents(Mockito.any(String.class)))
                 .thenReturn(EventTest.createDumyListOfEvents());
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
         service.retrieveAndStoreVesEvents();
-
         Mockito.verify(persister, Mockito.times(2)).persistAll(Mockito.any(List.class));
     }
 
     @Test
-    public void whenRetrievedThenAlsoStoredWithUE() {
-        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn("http://localhost/a-topic");
-        Mockito.when(restTemplate.getForEntity("http://localhost/a-topic", String[].class))
-                .thenReturn(new ResponseEntity<>(new String[]{"dead", "beef"}, HttpStatus.OK));
+    void whenRetrievedThenAlsoStoredWithUE() {
         Mockito.when(parser.getParsedEvents(Mockito.any(String.class)))
                 .thenReturn(EventTest.createDumyListOfEventsWithUe());
 
@@ -108,7 +109,21 @@ public class VesRetrievalServiceTest {
         service.retrieveAndStoreVesEvents();
 
         Mockito.verify(persister, Mockito.times(2)).persistAll(Mockito.any(List.class));
-        Assert.assertEquals(ueHolder.getUes(), Set.of("emergency_samsung_01", "mobile_samsung_s10"));
+        assertEquals(ueHolder.getUes(), Set.of("emergency_samsung_01", "mobile_samsung_s10"));
+    }
+
+
+    private DmaapProperties getTestProperties() {
+        DmaapProperties dmaapProperties = new DmaapProperties();
+        dmaapProperties.setPassword("password");
+        dmaapProperties.setUsername("user name");
+        return dmaapProperties;
+    }
+
+    private HttpHeaders createTestHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBasicAuth(getTestProperties().getUsername(), getTestProperties().getPassword());
+        return headers;
     }
 }
 
