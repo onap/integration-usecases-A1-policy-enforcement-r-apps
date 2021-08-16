@@ -143,7 +143,7 @@ public class PolicyAgentClient {
 
     private ServiceRegistrationPayload buildPayload() {
         return ServiceRegistrationPayload.builder()
-                .callBackUrl(POLICY_ACTOR_CALLBACK_URL)
+                .callbackUrl(POLICY_ACTOR_CALLBACK_URL)
                 .keepAliveIntervalSeconds("20")
                 .serviceName(SCD_SERVICE_NAME)
                 .build();

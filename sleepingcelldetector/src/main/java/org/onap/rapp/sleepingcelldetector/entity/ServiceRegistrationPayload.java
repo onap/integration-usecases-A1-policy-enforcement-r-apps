@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ServiceRegistrationPayload {
-    private String callBackUrl;
+    private String callbackUrl;
     private String keepAliveIntervalSeconds;
     private String serviceName;
 }
