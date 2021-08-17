@@ -13,6 +13,9 @@
 
 package org.onap.rapp.datacollector.service.configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;
@@ -28,10 +31,11 @@ public class DmaapProperties {
     private String username;
     private String password;
     private int port;
-    private String measurementsTopic;
+    private List<String> measurementsTopics = new ArrayList<>();
 
-    public String getMeasurementsTopicUrl() {
-        return String.format("%s://%s:%d/%s", protocol, host, port, measurementsTopic);
+    public List<String> getMeasurementsTopicUrls() {
+        return measurementsTopics.stream().map(topic -> String.format("%s://%s:%d/%s", protocol, host, port, topic))
+                .collect(Collectors.toList());
     }
 
 }

@@ -6,7 +6,9 @@ dmaap:
   port: 8181
   username: dcae@dcae.onap.org
   password: demo123456!
-  measurements-topic: "measurements"
+  measurements-topics:
+    - measurements
+    - measurements2
 database:
   host: mariadb-host
   port: 3306
