@@ -33,7 +33,8 @@ dmaap:
   prtocol: "http"
   host: "localhost"
   port: 8181
-  measurements-topic: "measurements"
+  measurements-topics: 
+    - "measurements"
 database:
   host: mariadb-host
   port: 3306
