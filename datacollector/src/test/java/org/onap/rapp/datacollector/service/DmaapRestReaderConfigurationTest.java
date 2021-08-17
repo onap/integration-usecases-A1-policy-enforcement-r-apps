@@ -16,6 +16,7 @@ package org.onap.rapp.datacollector.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.rapp.datacollector.service.configuration.DatabaseProperties;
@@ -35,7 +36,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @TestPropertySource(properties = {"dmaap.host=localhost",
         "dmaap.protocol=http",
         "dmaap.port=8080",
-        "dmaap.measurements-topic=a-topic",
+        "dmaap.measurements-topics=a-topic,b-topic",
         "database.url=jdbc:mysql://172.17.0.2:3306/ves?createDatabaseIfNotExist=true",
         "database.username=root",
         "database.password=mypass",
@@ -49,9 +50,12 @@ public class DmaapRestReaderConfigurationTest {
 
     @Test
     public void testUrlConstruction() {
-        final String actual = config.getMeasurementsTopicUrl();
-        final String expected = "http://localhost:8080/a-topic";
+        final List<String> actual = config.getMeasurementsTopicUrls();
+        final String expected1 = "http://localhost:8080/a-topic";
+        final String expected2 = "http://localhost:8080/b-topic";
 
-        assertEquals(expected, actual);
+        assertEquals(2, actual.size());
+        assertEquals(expected1, actual.get(0));
+        assertEquals(expected2, actual.get(1));
     }
 }

@@ -17,6 +17,7 @@ package org.onap.rapp.datacollector.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,18 +55,18 @@ class VesRetrievalServiceTest {
     @Mock
     UEHolder ueHolder;
 
-    private static final String TOPIC_URL = "http://localhost/a-topic";
+    private static final List<String> TOPIC_URLS = Collections.singletonList("http://localhost/a-topic");
 
     private VesRetrievalService service;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(config.getMeasurementsTopicUrl()).thenReturn(TOPIC_URL);
+        Mockito.when(config.getMeasurementsTopicUrls()).thenReturn(TOPIC_URLS);
         Mockito.when(config.getDmaapProperties()).thenReturn(getTestProperties());
         String[] response = new String[]{"a", "b"};
 
-        Mockito.when(restTemplate.exchange(TOPIC_URL, HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
+        Mockito.when(restTemplate.exchange(getTestTopicUrl(), HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
                 .thenReturn(new ResponseEntity<>(response, HttpStatus.OK));
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
@@ -80,7 +81,7 @@ class VesRetrievalServiceTest {
 
     @Test
     void whenGetIsCalled_thenExceptionIsThrown() {
-        Mockito.when(restTemplate.exchange(TOPIC_URL, HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
+        Mockito.when(restTemplate.exchange(getTestTopicUrl(), HttpMethod.GET, new HttpEntity<>(createTestHeaders()), String[].class))
                 .thenThrow(new RestClientException("An test exception"));
 
         service = new VesRetrievalService(restTemplate, parser, persister, config, ueHolder);
@@ -124,6 +125,10 @@ class VesRetrievalServiceTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth(getTestProperties().getUsername(), getTestProperties().getPassword());
         return headers;
+    }
+
+    private String getTestTopicUrl() {
+        return TOPIC_URLS.get(0);
     }
 }
 

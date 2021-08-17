@@ -23,6 +23,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.List;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
@@ -117,8 +118,8 @@ public class DmaapRestReaderConfiguration {
         this.databaseProperties = databaseProperties;
     }
 
-    public String getMeasurementsTopicUrl() {
-        return dmaapProperties.getMeasurementsTopicUrl();
+    public List<String> getMeasurementsTopicUrls() {
+        return dmaapProperties.getMeasurementsTopicUrls();
     }
 
     public DmaapProperties getDmaapProperties() {
