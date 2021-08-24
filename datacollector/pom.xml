@@ -81,6 +81,11 @@
             <artifactId>jaxb-api</artifactId>
             <version>${javax.xml.bind.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${dbcp.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
