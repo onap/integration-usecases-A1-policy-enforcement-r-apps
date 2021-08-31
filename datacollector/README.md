@@ -58,7 +58,7 @@ spring:
 ```
 
 After startup DataCollector R-APP is ready to read VES Events from DMaaP and stores them in database if they are flowing
-into DMaaP.
+into DMaaP. DataCollector R-APP supports legacy VES event as well as Perf3gpp VES event produced by PM Mapper.
 
 VES Event example
 
@@ -116,9 +116,138 @@ VES Event example
 }
 ```
 
-Information about performance is situated in "additionalMeasurements" section, consisting of latency and throughput
-parameters of performance, identifier of event producer and trafficModel with user equipment information. DataCollector
-R-APP provides two endpoints to access data of stored VES Events:
+Information about performance is situated in "additionalMeasurements" section, consisting of latency and throughput parameters of performance, identifier of event producer and trafficModel with user equipment information.
+
+PM Mapper Perf3gpp VES event
+
+```json
+{
+  "event":{
+    "commonEventHeader":{
+      "domain":"perf3gpp",
+      "eventId":"ddd48497-913c-451f-a396-2316a29e5975",
+      "sequence":0,
+      "eventName":"perf3gpp_PE-Samsung_pmMeasResult",
+      "sourceName":"someVnfName",
+      "reportingEntityName":"",
+      "priority":"Normal",
+      "startEpochMicrosec":1626352192000,
+      "lastEpochMicrosec":1626352222000,
+      "version":"4.0",
+      "vesEventListenerVersion":"7.1",
+      "timeZoneOffset":"+02:00"
+    },
+    "perf3gppFields":{
+      "perf3gppFieldsVersion":"1.0",
+      "measDataCollection":{
+        "granularityPeriod":16262192000,
+        "measuredEntityUserName":"ORAN PE Sim",
+        "measuredEntityDn":"",
+        "measuredEntitySoftwareVersion":"",
+        "measInfoList":[
+          {
+            "measInfoId":{
+              "sMeasInfoId":""
+            },
+            "measTypes":{
+              "sMeasTypesList":[
+                "latency",
+                "throughput"
+              ]
+            },
+            "measValuesList":[
+              {
+                "measObjInstId":"Chn0000",
+                "suspectFlag":"false",
+                "measResults":[
+                  {
+                    "p":1,
+                    "sValue":"110"
+                  },
+                  {
+                    "p":2,
+                    "sValue":"55"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId":{
+              "sMeasInfoId":""
+            },
+            "measTypes":{
+              "sMeasTypesList":[
+                "latency"
+              ]
+            },
+            "measValuesList":[
+              {
+                "measObjInstId":"Chn0000",
+                "suspectFlag":"false",
+                "measResults":[
+                  {
+                    "p":1,
+                    "sValue":"101"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId":{
+              "sMeasInfoId":""
+            },
+            "measTypes":{
+              "sMeasTypesList":[
+                "latency"
+              ]
+            },
+            "measValuesList":[
+              {
+                "measObjInstId":"Chn0000",
+                "suspectFlag":"false",
+                "measResults":[
+                  {
+                    "p":1,
+                    "sValue":"135"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "measInfoId":{
+              "sMeasInfoId":""
+            },
+            "measTypes":{
+              "sMeasTypesList":[
+                "latency"
+              ]
+            },
+            "measValuesList":[
+              {
+                "measObjInstId":"Chn0000",
+                "suspectFlag":"false",
+                "measResults":[
+                  {
+                    "p":1,
+                    "sValue":"100"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
+```
+In this case information about performance is situated in "measDataCollection" section, consisting of latency and throughput parameters of performance, identifier of event producer and trafficModel with user equipment information.
+As PM Mapper is not maintaining the exact time of each event, that times are calculated in following way: (lastEpochMicrosec - startEpochMicrosec)/ number of events.
+
+DataCollector R-APP provides two endpoints to access data of stored VES Events:
 
 1. `{datacollectorhost}/v1/pm/ues`
 
