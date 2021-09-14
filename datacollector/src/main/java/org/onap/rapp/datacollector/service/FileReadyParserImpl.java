@@ -18,13 +18,6 @@ import static java.util.Objects.nonNull;
 import static org.onap.rapp.datacollector.service.PMService.CELL_FIELD_NAME;
 import static org.onap.rapp.datacollector.service.PMService.VALUE_NAME;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import org.onap.rapp.datacollector.entity.fileready.FileReadyEvent;
 import org.onap.rapp.datacollector.entity.fileready.MeasDataCollection;
 import org.onap.rapp.datacollector.entity.fileready.MeasDataCollection.MeasInfo;
@@ -44,6 +38,14 @@ import org.onap.rapp.datacollector.entity.ves.MeasurementFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 
 @Service
 public class FileReadyParserImpl extends ParserAbstractClass implements VesParser {
@@ -119,8 +121,8 @@ public class FileReadyParserImpl extends ParserAbstractClass implements VesParse
     }
 
     private Map<String, String> createAdditionalMeasurementHashMap(String value) {
-        if (!value.contains(MAP_ENTITY_DELIMITER)) {
-            return Collections.singletonMap(VALUE_NAME, value);
+        if (!value.contains(MAP_VALUES_DELIMITER)) {
+            return Stream.of(value.split(MAP_ENTITY_DELIMITER)).collect(Collectors.toMap(v-> VALUE_NAME,v-> v));
         } else {
             return Stream.of(value.split(MAP_ENTITY_DELIMITER))
                            .map(m -> m.split(MAP_VALUES_DELIMITER))
