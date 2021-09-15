@@ -15,8 +15,13 @@
 package org.onap.rapp.datacollector.entity.ves;
 
 import static org.junit.Assert.assertEquals;
+import static org.onap.rapp.datacollector.entity.ves.MeasurementFields.MEASUREMENT_FIELDS_VERSION;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import org.junit.Test;
 
 public class MeasurementFieldsTest {
@@ -37,7 +42,7 @@ public class MeasurementFieldsTest {
     static MeasurementFields createDummy(AdditionalMeasurements v) {
         return MeasurementFields.builder()
                 .measurementInterval(1234567L)
-                .additionalMeasurements(List.of(v))
+                .additionalMeasurements(new ArrayList<>(Arrays.asList(v)))
                 .build();
 
     }
@@ -48,7 +53,7 @@ public class MeasurementFieldsTest {
         MeasurementFields actual = createDummy(v);
 
         assertEquals(1234567L, actual.measurementInterval);
-        assertEquals("4.0", actual.MEASUREMENT_FIELDS_VERSION);
+        assertEquals("4.0", MEASUREMENT_FIELDS_VERSION);
         assertEquals(List.of(v), actual.additionalMeasurements);
     }
 }

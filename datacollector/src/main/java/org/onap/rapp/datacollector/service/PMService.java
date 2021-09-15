@@ -13,6 +13,7 @@
 
 package org.onap.rapp.datacollector.service;
 
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -67,8 +68,8 @@ public class PMService {
     }
 
     private long getTimeIntervalEndTime(int slot, int count, long startDate) {
-        int timeIntervalMicrosec = slot * count * MICRO_SECONDS_OF_SECOND;
-        return startDate + timeIntervalMicrosec;
+        BigInteger timeIntervalMicrosec = BigInteger.valueOf(slot).multiply(BigInteger.valueOf(count)).multiply(BigInteger.valueOf(MICRO_SECONDS_OF_SECOND));
+        return startDate + timeIntervalMicrosec.longValue();
     }
 
     private Map<String, List<Event>> groupByCell(List<EventAPI> events) {

@@ -41,7 +41,7 @@ public class MeasurementFields {
     private MeasurementFields(Long eventId, long measurementInterval, List<AdditionalMeasurements> additionalMeasurements) {
         this.eventId = eventId;
         this.measurementInterval = measurementInterval;
-        this.additionalMeasurements = Collections.unmodifiableList(additionalMeasurements);
+        this.additionalMeasurements = additionalMeasurements;
     }
 
     public static MeasurementFields  of(Long eventId) {

@@ -95,8 +95,8 @@ public class VesRetrievalService implements DmaapRestReader {
     }
 
     private void saveAllEvents(List<Event> events) {
-        persister.persistAll(events);
         saveUesOfVes(events);
+        persister.persistAll(removeTrafficModelFromEvents(events));
     }
 
     private void saveUesOfVes(List<Event> events) {
@@ -113,6 +113,13 @@ public class VesRetrievalService implements DmaapRestReader {
                 .collect(Collectors.toSet())).orElse(Collections.emptySet());
     }
 
+    private List<Event> removeTrafficModelFromEvents(List<Event> events) {
+        return events.stream().map(event -> {
+            event.getMeasurementFields().getAdditionalMeasurements()
+                    .removeIf(additionalMeasurements -> UE_FIELD_NAME.equalsIgnoreCase(additionalMeasurements.getName()));
+            return event;
+        }).collect(Collectors.toList());
+    }
 }
 
 
